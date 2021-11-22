@@ -1,0 +1,1 @@
+-keep class dev.adryanev.expense_tracker.BuildConfig { *; }

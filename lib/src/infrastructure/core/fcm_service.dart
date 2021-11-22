@@ -8,14 +8,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kotlin_flavor/scope_functions.dart';
 
+@lazySingleton
 class FcmService {
-  final FlutterLocalNotificationsPlugin localNotification =
+  static final FlutterLocalNotificationsPlugin localNotification =
       getIt<FlutterLocalNotificationsPlugin>();
-  final FirebaseMessaging fcm = getIt<FirebaseMessaging>();
+  static final FirebaseMessaging fcm = getIt<FirebaseMessaging>();
 
-  Future<void> listenNotification() async {
+  static Future<void> listenNotification() async {
     var initializeAndroidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializeIOSSettings = IOSInitializationSettings(
@@ -53,35 +55,35 @@ class FcmService {
     });
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      logger.i("FirebaseMessage received: $message");
-      mapAndShowNotification(message.data);
+      logger.i(
+          "FirebaseMessage received: $message with data ${message.notification}");
+      showNotification(message);
+      // mapAndShowNotification(message);
     });
   }
 
-  Future<void> _onDidReceiveLocalNotification(
+  static Future<void> _onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
     logger.i("Fcm notification clicked: $payload");
   }
 
-  Future<void> _firebaseMessagingBackgroundHandler(
+  static Future<void> _firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
     await Firebase.initializeApp();
-    logger.i("Handling fcm background message: ${message.messageId}");
+    print("Handling fcm background message: ${message.messageId}");
     mapAndShowNotification(message.data);
   }
 
-  Future _onSelectNotification(dynamic payload) async {
+  static Future _onSelectNotification(dynamic payload) async {
     logger.i("Handling selectNotificatione: $payload");
     if (payload != null) {
       var parsedPayload = json.decode(payload);
-
       await _handleOnMessage(parsedPayload);
     }
   }
 
-  Future<String?> _handleOnMessage(dynamic message) async {
+  static Future<String?> _handleOnMessage(dynamic message) async {
     try {
       if (GetPlatform.isAndroid) {
         logger.i(">> Message : $message");
@@ -108,24 +110,15 @@ class FcmService {
     }
   }
 
-  mapAndShowNotification(Map<String, dynamic> message) async {
+  static mapAndShowNotification(Map<String, dynamic> message) async {
     logger.i("handle show notification : $message");
-    String title = "";
-    String body = "";
-    if (GetPlatform.isAndroid) {
-      title = '${message['notification']['title']}';
-      body = '${message['notification']['body']}';
-    } else {
-      title = '${message['title']}';
-      body = '${message['body']}';
-    }
 
-    localNotification.show(math.Random().nextInt(900) + 100, title, body,
-        await _setupFcmNotification(),
+    localNotification.show(math.Random().nextInt(900) + 100, message['title'],
+        message['body'], await _setupFcmNotification(),
         payload: json.encode(message));
   }
 
-  Future<NotificationDetails> _setupFcmNotification() async {
+  static Future<NotificationDetails> _setupFcmNotification() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'EXPENSE_TRACKER_NOTIFICATION',
       'EXPENSE_TRACKER_NOTIFICATION',
@@ -145,5 +138,16 @@ class FcmService {
       iOS: iOSPlatformChannelSpecifics,
     );
     return platformChannelSpecifics;
+  }
+
+  static void showNotification(RemoteMessage? message) async {
+    logger.i("handle show notification : $message");
+    //TODO: handle payload, null
+    localNotification.show(
+        math.Random().nextInt(900) + 100,
+        message?.notification?.title,
+        message?.notification?.body,
+        await _setupFcmNotification(),
+        payload: null);
   }
 }

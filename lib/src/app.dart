@@ -45,21 +45,17 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
   @override
   Widget build(BuildContext context) {
     initialRoute = AppRoute.initialRoute;
-    return MultiBlocProvider(
-        providers: globalBloc,
-        child: MultiBlocListener(
-            listeners: [],
-            child: ScreenUtilInit(
-              designSize: const Size(375, 812),
-              builder: () => GetMaterialApp(
-                  title: "Expense Tracker",
-                  debugShowCheckedModeBanner: false,
-                  initialRoute: initialRoute,
-                  getPages: Navigation.routes,
-                  locale: Locale('en', 'US'),
-                  navigatorObservers: <NavigatorObserver>[observer],
-                  translations: AppTranslation(),
-                  theme: ThemeData.light()),
-            )));
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: () => GetMaterialApp(
+          title: "Expense Tracker",
+          debugShowCheckedModeBanner: false,
+          initialRoute: initialRoute,
+          getPages: Navigation.routes,
+          locale: const Locale('en', 'US'),
+          navigatorObservers: <NavigatorObserver>[observer],
+          translations: AppTranslation(),
+          theme: ThemeData.light()),
+    );
   }
 }
