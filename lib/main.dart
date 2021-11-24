@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/src/core/utils/expense_bloc_observer.dart';
+import 'package:expense_tracker/src/core/utils/helper.dart';
 import 'package:expense_tracker/src/core/utils/logger.dart';
 import 'package:expense_tracker/src/infrastructure/core/fcm_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +28,7 @@ void main() async {
 
     //catch flutter error
     FlutterError.onError = (FlutterErrorDetails details) {
-      if (env == 'dev') {
+      if (!isProduction) {
         FlutterError.dumpErrorToConsole(details);
       } else {
         firebaseCrashlytics.recordFlutterError(details);
