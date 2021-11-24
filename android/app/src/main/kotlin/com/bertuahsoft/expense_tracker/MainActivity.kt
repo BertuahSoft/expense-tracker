@@ -1,4 +1,4 @@
-package dev.adryanev.expense_tracker
+package com.bertuahsoft.expense_tracker
 
 import io.flutter.embedding.android.FlutterActivity
 

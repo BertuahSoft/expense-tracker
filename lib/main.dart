@@ -22,7 +22,7 @@ void main() async {
 
     final firebaseCrashlytics = getIt<FirebaseCrashlytics>();
     BlocOverrides.runZoned(() {
-      final overrides = BlocOverrides.current;
+      // final overrides = BlocOverrides.current;
     }, blocObserver: ExpenseBlocObserver());
 
     //catch flutter error

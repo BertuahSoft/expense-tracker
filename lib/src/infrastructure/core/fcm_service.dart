@@ -19,8 +19,8 @@ class FcmService {
 
   static Future<void> listenNotification() async {
     var initializeAndroidSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializeIOSSettings = IOSInitializationSettings(
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializeIOSSettings = const IOSInitializationSettings(
         onDidReceiveLocalNotification: _onDidReceiveLocalNotification,
         defaultPresentSound: true,
         defaultPresentAlert: true,

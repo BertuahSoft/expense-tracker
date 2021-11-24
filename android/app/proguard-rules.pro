@@ -1,1 +1,1 @@
--keep class dev.adryanev.expense_tracker.BuildConfig { *; }
+-keep class com.bertuahsoft.expensetracker.BuildConfig { *; }
