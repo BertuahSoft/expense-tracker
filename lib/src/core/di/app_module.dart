@@ -1,3 +1,4 @@
+import 'package:expense_tracker/generated/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -11,4 +12,6 @@ abstract class AppModule {
   @lazySingleton
   FlutterLocalNotificationsPlugin provideLocalNotification() =>
       FlutterLocalNotificationsPlugin();
+
+  S provideS() => S();
 }

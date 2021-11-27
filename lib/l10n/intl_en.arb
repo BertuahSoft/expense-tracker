@@ -1,0 +1,13 @@
+{
+  "appName": "Expense Tracker",
+  "@appName": {
+    "description": "Your Money Manager"
+  },
+  "moneyManagement": "Money Management",
+  "moneyManagementDesc": "Good money management helps you set and achieve long-term financial goals, whether that's as big as buying a home or planning your retirement, or as routine as funding an emergency fund so you aren't stressed out over every unexpected expense that pops up.",
+  "budgetPlanning": "Budget Planing",
+  "budgetPlanningDesc": "Since budgeting allows you to create a spending plan for your money, it ensures that you will always have enough money for the things you need and the things that are important to you. Following a budget or spending plan will also keep you out of debt or help you work your way out of debt if you are currently in debt.",
+  "happySaving": "Happy Saving",
+  "happySavingDesc": "Remember to record cash disbursements every day to avoid wasting expenses and make plans to save money so you can buy things as needed. We will help you manage your finances.",
+  "startSaving": "Start Saving"
+}
