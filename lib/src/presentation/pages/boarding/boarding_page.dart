@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:expense_tracker/src/core/theme/light.dart';
 import 'package:expense_tracker/src/core/utils/helper.dart';
-import 'package:expense_tracker/src/presentation/pages/core/rounded_button.dart';
+import 'package:expense_tracker/src/presentation/pages/core/rounded_gradient_button.dart';
+import 'package:expense_tracker/src/presentation/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,10 +101,13 @@ class _BoardingPageState extends State<BoardingPage> {
                           ? _buildPageIndicator()
                           : [
                               Expanded(
-                                  child: RoundedButton(
+                                  child: RoundedGradientButton(
                                       text: i10n.startSaving.toUpperCase(),
                                       width: 50.w,
-                                      onpressed: () {}))
+                                      onpressed: () {
+                                        context.router
+                                            .replace(const SignInRoute());
+                                      }))
                             ],
                     ),
                   )

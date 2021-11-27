@@ -9,18 +9,14 @@ class ThemeBackground extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: <Color>[
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).colorScheme.primaryVariant,
-            Theme.of(context).colorScheme.primary,
-          ],
-              stops: const [
-            0.0,
-            0.5,
-            0.95
-          ])),
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: <Color>[
+          Theme.of(context).colorScheme.secondary,
+          Theme.of(context).colorScheme.primaryVariant,
+          Theme.of(context).colorScheme.primary,
+        ],
+      )),
       child: child,
     );
   }

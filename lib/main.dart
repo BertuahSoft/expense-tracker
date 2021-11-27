@@ -35,6 +35,7 @@ void main() async {
         firebaseCrashlytics.recordFlutterError(details);
       }
     };
+    Paint.enableDithering = true;
     runApp(const ExpenseTrackerApp());
   }, (error, stacktrace) {
     logger.e("runGuardedZone: Caught Error in root zone");
