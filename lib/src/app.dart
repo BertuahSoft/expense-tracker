@@ -1,16 +1,13 @@
+import 'package:expense_tracker/generated/l10n.dart';
 import 'package:expense_tracker/injector.dart';
-import 'package:expense_tracker/src/core/localization/app_translation.dart';
-import 'package:expense_tracker/src/core/utils/global_bloc.dart';
+import 'package:expense_tracker/src/core/theme/light.dart';
 import 'package:expense_tracker/src/core/utils/helper.dart';
-import 'package:expense_tracker/src/presentation/routes/app_route.dart';
-import 'package:expense_tracker/src/presentation/routes/navigation.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:expense_tracker/src/presentation/routes/app_router.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class ExpenseTrackerApp extends StatefulWidget {
   const ExpenseTrackerApp({Key? key}) : super(key: key);
@@ -20,8 +17,7 @@ class ExpenseTrackerApp extends StatefulWidget {
 }
 
 class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
-  late String initialRoute;
-  static FirebaseAnalytics analytics = getIt<FirebaseAnalytics>();
+  final _appRouter = AppRouter();
   static FirebaseAnalyticsObserver observer =
       getIt<FirebaseAnalyticsObserver>();
   static FirebaseCrashlytics crashlytics = getIt<FirebaseCrashlytics>();
@@ -44,18 +40,24 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
 
   @override
   Widget build(BuildContext context) {
-    initialRoute = AppRoute.initialRoute;
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: () => GetMaterialApp(
-          title: "Expense Tracker",
-          debugShowCheckedModeBanner: false,
-          initialRoute: initialRoute,
-          getPages: Navigation.routes,
-          locale: const Locale('en', 'US'),
-          navigatorObservers: <NavigatorObserver>[observer],
-          translations: AppTranslation(),
-          theme: ThemeData.light()),
-    );
+        designSize: const Size(375, 812),
+        builder: () => MaterialApp.router(
+              title: i10n.appName,
+              routeInformationParser: _appRouter.defaultRouteParser(),
+              routerDelegate: _appRouter.delegate(
+                navigatorObservers: () => <NavigatorObserver>[observer],
+              ),
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              theme: lightTheme(),
+              darkTheme: ThemeData.dark(),
+            ));
   }
 }

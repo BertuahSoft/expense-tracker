@@ -46,7 +46,7 @@ android {
     }
 
     defaultConfig {
-        applicationId project.env.get("APP_ID")
+        applicationId "com.bertuahsoft.expensetracker"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()

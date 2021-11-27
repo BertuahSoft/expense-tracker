@@ -15,6 +15,7 @@ import 'src/app.dart';
 void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
     await FlutterConfig.loadEnvVariables();
     String env = FlutterConfig.get('ENV').toString();
     configureInjection(env);

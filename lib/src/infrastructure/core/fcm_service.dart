@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:expense_tracker/injector.dart';
@@ -7,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
+import 'dart:io' show Platform;
 import 'package:injectable/injectable.dart';
 import 'package:kotlin_flavor/scope_functions.dart';
 
@@ -85,7 +86,7 @@ class FcmService {
 
   static Future<String?> _handleOnMessage(dynamic message) async {
     try {
-      if (GetPlatform.isAndroid) {
+      if (Platform.isAndroid) {
         logger.i(">> Message : $message");
         if (message['data']['action'] != null &&
             message['data']['action'] != 'no') {
@@ -94,7 +95,7 @@ class FcmService {
         } else {
           return null;
         }
-      } else if (GetPlatform.isIOS) {
+      } else if (Platform.isIOS) {
         if (message['action'] != null && message['action'] != 'no') {
           var url = message['action'];
           return url as String;
