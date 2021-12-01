@@ -1,4 +1,4 @@
-part of 'auth_status_bloc.dart';
+part of 'auth_status_cubit.dart';
 
 @freezed
 class AuthStatusState with _$AuthStatusState {
