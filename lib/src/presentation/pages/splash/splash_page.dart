@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:expense_tracker/src/application/auth_status/cubit/auth_status_cubit.dart';
+import 'package:expense_tracker/src/application/core/auth_status/cubit/auth_status_cubit.dart';
+
 import 'package:expense_tracker/src/core/utils/logger.dart';
 import 'package:expense_tracker/src/presentation/pages/core/theme_background.dart';
 import 'package:expense_tracker/src/presentation/routes/app_router.dart';
