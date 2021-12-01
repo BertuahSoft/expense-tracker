@@ -96,8 +96,8 @@ class SignInPage extends StatelessWidget {
                           width: 50.w,
                           onPressed: () {
                             context
-                                .read<FlashCubit>()
-                                .showSnackbar(message: "Login With Facebook");
+                                .read<AuthenticationCubit>()
+                                .signInWithFacebook();
                           },
                           child: Stack(
                             children: <Widget>[
