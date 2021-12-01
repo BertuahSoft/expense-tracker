@@ -32,8 +32,7 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 3), () {
       logger.i("delayed to dashboard for 3 seconds");
     });
-    //TODO: add dashboard page
-    // AutoRouter.of(context).replace(const BoardingRoute());
+    AutoRouter.of(context).replace(const DashboardRoute());
   }
 
   @override

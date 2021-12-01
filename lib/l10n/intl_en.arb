@@ -9,5 +9,6 @@
   "budgetPlanningDesc": "Since budgeting allows you to create a spending plan for your money, it ensures that you will always have enough money for the things you need and the things that are important to you. Following a budget or spending plan will also keep you out of debt or help you work your way out of debt if you are currently in debt.",
   "happySaving": "Happy Saving",
   "happySavingDesc": "Remember to record cash disbursements every day to avoid wasting expenses and make plans to save money so you can buy things as needed. We will help you manage your finances.",
-  "startSaving": "Start Saving"
+  "startSaving": "Start Saving",
+  "cannotConnect": "Sorry, We're cannot connected to the server."
 }

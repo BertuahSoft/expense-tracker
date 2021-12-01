@@ -1,9 +1,13 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/src/application/auth/cubit/authentication_cubit.dart';
 import 'package:expense_tracker/src/application/core/flash/cubit/flash_cubit.dart';
 import 'package:expense_tracker/src/core/theme/light.dart';
+import 'package:expense_tracker/src/core/utils/helper.dart';
 import 'package:expense_tracker/src/presentation/pages/core/rounded_white_button.dart';
 import 'package:expense_tracker/src/presentation/pages/core/theme_background.dart';
+import 'package:expense_tracker/src/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:expense_tracker/src/presentation/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,16 +28,16 @@ class SignInPage extends StatelessWidget {
               state.map(
                   initial: (_) {},
                   loading: (_) {},
-                  success: (state) {},
+                  success: (state) {
+                    context.router.replace(const DashboardRoute());
+                  },
                   failure: (state) {
                     state.failure.map(
                         cancelledByUser: (failure) {},
                         serverError: (failure) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("We cannot connect to the server"),
-                            ),
-                          );
+                          context
+                              .read<FlashCubit>()
+                              .showSnackbar(message: i10n.cannotConnect);
                         });
                   });
             },
