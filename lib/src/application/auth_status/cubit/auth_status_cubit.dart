@@ -4,9 +4,12 @@ import 'package:expense_tracker/src/domain/auth/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:async';
 
+import 'package:injectable/injectable.dart';
+
 part 'auth_status_state.dart';
 part 'auth_status_cubit.freezed.dart';
 
+@injectable
 class AuthStatusCubit extends Cubit<AuthStatusState> {
   final AuthContract _contract;
   StreamSubscription? _streamSubscription;
