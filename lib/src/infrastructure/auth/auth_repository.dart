@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:expense_tracker/src/core/utils/logger.dart';
 import 'package:expense_tracker/src/domain/auth/auth_contract.dart';
 import 'package:expense_tracker/src/domain/auth/user.dart';
 import 'package:expense_tracker/src/domain/auth/auth_failure.dart';

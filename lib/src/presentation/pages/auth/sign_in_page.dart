@@ -52,13 +52,15 @@ class SignInPage extends StatelessWidget {
                       context.read<AuthStatusCubit>().getAuthenticatedUser();
                     },
                     failure: (state) {
-                      state.failure.map(
-                          cancelledByUser: (failure) {},
-                          serverError: (failure) {
-                            context
-                                .read<FlashCubit>()
-                                .showSnackbar(message: i10n.cannotConnect);
-                          });
+                      state.failure.map(cancelledByUser: (failure) {
+                        context
+                            .read<FlashCubit>()
+                            .showSnackbar(message: i10n.loginCancelled);
+                      }, serverError: (failure) {
+                        context
+                            .read<FlashCubit>()
+                            .showSnackbar(message: i10n.cannotConnect);
+                      });
                     });
               },
               builder: (context, state) => ThemeBackground(

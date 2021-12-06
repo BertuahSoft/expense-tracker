@@ -14,5 +14,6 @@
   "welcomeUser": "Welcome, {userName}!",
   "cannotAuthenticated": "Sorry, We're cannot authenticate you right now",
   "welcomeSaver": "Welcome Saver",
-  "loginFirst": "Login first so we can keep your savings data safe in our cloud storage."
+  "loginFirst": "Login first so we can keep your savings data safe in our cloud storage.",
+  "loginCancelled": "Login Cancelled"
 }
