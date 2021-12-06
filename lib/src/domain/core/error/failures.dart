@@ -5,11 +5,15 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
+  final String message;
+  ServerFailure({required this.message}) : super([message]);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [message];
 }
 
-class CacheFailure extends Failure {
+class LocalFailure extends Failure {
+  final String message;
+  LocalFailure({required this.message}) : super([message]);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [message];
 }

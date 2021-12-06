@@ -18,6 +18,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
+    // context.read<AuthStatusCubit>().getAuthenticatedUser();
     super.initState();
   }
 
@@ -39,14 +40,13 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthStatusCubit, AuthStatusState>(
       listener: (context, state) {
-        state.map(
-            initial: (_) {},
-            authenticated: (state) {
-              _navigateToDashboard();
-            },
-            unauthenticated: (_) {
-              _navigateToBoarding();
-            });
+        state.map(initial: (_) {
+          _navigateToBoarding();
+        }, authenticated: (state) {
+          _navigateToDashboard();
+        }, unauthenticated: (_) {
+          _navigateToBoarding();
+        });
       },
       builder: (context, state) {
         return Scaffold(

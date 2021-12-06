@@ -4,6 +4,7 @@ import 'package:expense_tracker/src/application/core/flash/cubit/flash_cubit.dar
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final globalBloc = <BlocProvider>[
-  BlocProvider<AuthStatusCubit>(create: (_) => getIt<AuthStatusCubit>()),
+  BlocProvider<AuthStatusCubit>(
+      create: (_) => getIt<AuthStatusCubit>()..getAuthenticatedUser()),
   BlocProvider<FlashCubit>(create: (_) => getIt<FlashCubit>()),
 ];
