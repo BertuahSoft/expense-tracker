@@ -1,3 +1,4 @@
+import 'package:expense_tracker/src/core/theme/light.dart';
 import 'package:flutter/material.dart';
 
 class ThemeBackground extends StatelessWidget {
@@ -7,16 +8,7 @@ class ThemeBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
-        colors: <Color>[
-          Theme.of(context).colorScheme.secondary,
-          Theme.of(context).colorScheme.primaryVariant,
-          Theme.of(context).colorScheme.primary,
-        ],
-      )),
+      decoration: const BoxDecoration(gradient: lightGradient),
       child: child,
     );
   }

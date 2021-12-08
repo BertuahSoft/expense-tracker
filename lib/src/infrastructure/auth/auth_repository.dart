@@ -22,10 +22,6 @@ class AuthRepository implements AuthContract {
       this._firebaseUserMapper);
 
   @override
-  Stream<User?> getSignedInUser() => _firebaseAuth.authStateChanges().map(
-      (user) => (user != null) ? _firebaseUserMapper.toDomain(user) : null);
-
-  @override
   Future<Either<AuthFailure, User>> signInWithFacebook() async {
     try {
       final facebookUser = await _facebookAuth.login();

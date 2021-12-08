@@ -12,6 +12,7 @@ environment:
 dependencies:
   auto_route: ^3.1.3
   bloc: ^8.0.1
+  cached_network_image: ^3.2.0
   cloud_firestore: ^3.1.0
   dartz: ^0.10.0
   equatable: ^2.0.3
@@ -32,6 +33,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   flutter_secure_storage: ^5.0.2
   flutter_svg: ^0.23.0+1
+  flutter_svg_provider: ^0.1.11
   freezed_annotation: ^0.15.0
   get_it: ^7.2.0
   google_fonts: ^2.1.0

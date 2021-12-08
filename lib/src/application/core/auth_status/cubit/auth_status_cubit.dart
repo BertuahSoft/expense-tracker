@@ -15,24 +15,8 @@ part 'auth_status_cubit.freezed.dart';
 class AuthStatusCubit extends Cubit<AuthStatusState> {
   final AuthContract _contract;
   final UserSessionContract _session;
-  StreamSubscription? _streamSubscription;
   AuthStatusCubit(this._contract, this._session)
       : super(const AuthStatusState.initial());
-
-  StreamSubscription<User?> _monitorAuthStatus() {
-    return _streamSubscription = _contract.getSignedInUser().listen((user) {
-      if (user != null) {
-        _emitAuthenticated(user);
-      } else {
-        _emitUnauthenticated();
-      }
-    });
-  }
-
-  void _emitAuthenticated(User user) {
-    emit(AuthStatusState.authenticated(user));
-  }
-
   void _emitUnauthenticated() => emit(const AuthStatusState.unauthenticated());
 
   void getAuthenticatedUser() async {
@@ -49,7 +33,6 @@ class AuthStatusCubit extends Cubit<AuthStatusState> {
 
   @override
   Future<void> close() {
-    _streamSubscription?.cancel();
     return super.close();
   }
 }
