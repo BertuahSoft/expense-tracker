@@ -19,7 +19,21 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Daily Report',
+          style: TextStyle(fontSize: 10.sp),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 10.w),
+            child: InkWell(
+              onTap: () {},
+              child: const Icon(Icons.notifications),
+            ),
+          ),
+        ],
       ),
       drawer: MainDrawer(
         child: ListView(
