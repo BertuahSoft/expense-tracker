@@ -44,3 +44,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+*.config.dart
+*.g.dart
+*.freezed.dart
+*.gr.dart
+.env
+/android/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
+/lib/generated
